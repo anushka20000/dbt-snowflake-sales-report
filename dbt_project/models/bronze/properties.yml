@@ -1,0 +1,47 @@
+models:
+  - name: bronze_customer
+    description: "This model represents the bronze layer of customer data."
+    config:
+      materialized: view
+    columns:
+      - name: customer_sk
+        data_tests:
+          - generic_unique_pk
+          - generic_not_null
+      - name: loyalty_tier
+        data_tests:
+          - accepted_values:
+              arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
+                values: ['Gold', 'Silver', 'Platinum', 'None']
+                config:
+                  severity: warn
+      - name: customer_code
+        data_tests:
+          - generic_unique_pk
+          - generic_not_null
+      - name: signup_date
+        data_tests:
+          - generic_not_null
+  - name: bronze_product
+    description: "This model represents the bronze layer of product data."
+    config:
+      materialized: table
+  - name: bronze_sales
+    description: "This model represents the bronze layer of sales data."
+    config:
+      materialized: table
+    columns:
+      - name: sales_id
+        data_tests:
+          - generic_unique_pk
+          - generic_not_null
+      - name: net_amount
+        data_tests:
+          - generic_not_null
+          - generic_non_negative
+      - name: store_sk
+        data_tests:
+          - generic_not_null
+      - name: product_sk
+        data_tests:
+          - generic_not_null

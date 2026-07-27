@@ -1,0 +1,13 @@
+# ...existing code...
+dbt_project:
+  outputs:
+    dev:
+      catalog: workspace
+      host: dbc-118d25ba-e87d.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/42b24e7d467a3c61
+      schema: default
+      threads: 1
+      token: "{{ env_var('DATABRICKS_TOKEN', '') }}"
+      type: databricks
+  target: dev
+# ...existing code...
