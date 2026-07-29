@@ -1,6 +1,6 @@
 sources:
   - name: source
-    database: workspace  
+    database: '{{ target.catalog }}'  
     schema: source  
     tables:
       - name: dim_customer
@@ -9,9 +9,15 @@ sources:
       - name: dim_store
       - name: fact_returns
       - name: fact_sales
+      - name: items
   - name: default
-    database: workspace  
+    database: '{{ target.catalog }}'  
     schema: default  
     tables:
       - name: lookup
+  - name: default
+    database: '{{ target.catalog }}'  
+    schema: gold  
+    tables:
+      - name: source_gold_items
 

@@ -1,5 +1,5 @@
-{# SELECT * 
-FROM {{source('default', 'lookup')}} #}
+SELECT * 
+FROM {{source('default', 'lookup')}}
 
 
 {# {% set relation = ref('lookup') %}
